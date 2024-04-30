@@ -2,6 +2,7 @@ package org.horsechessboard;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * @author k
@@ -46,6 +47,7 @@ public class HorseChessBoard {
         visitedPosition[row * x + col] = true;
         //获取当前这个位置可以走的下一个位置有哪些
         ArrayList<Point> nextPoints = next(new Point(col, row));
+        sort(nextPoints);
         //遍历
         while (!nextPoints.isEmpty()) {
             //取出一个位置
@@ -62,9 +64,20 @@ public class HorseChessBoard {
         } else {
             isFinished = true;
         }
-
-
     }
+
+    /**
+     *  对nextPoints的各个位置进行排序，可以走的下一个位置的次数进行排序，把可能走的下一个位置从小到大排序
+     */
+    private static void sort(ArrayList<Point> ps){
+        ps.sort(new Comparator<Point>() {
+            @Override
+            public int compare(Point o1, Point o2) {
+                return next(o1).size() - next(o2).size();
+            }
+        });
+    }
+
 
     /**
      * 获取当前位置可以走的下一步的所有位置
