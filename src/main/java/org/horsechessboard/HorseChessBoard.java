@@ -18,7 +18,7 @@ public class HorseChessBoard {
     private static boolean[] visitedPosition = new boolean[x * y];
     private static boolean isFinished = false;
     private static int countTimes = 0;
-
+    
     public static void main(String[] args) {
 
         int row = 2;
